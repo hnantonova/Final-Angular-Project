@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  getAuth,
+  Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
@@ -9,16 +9,14 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
-  auth = getAuth();
-  email: string = '';
-  password: string = '';
+  constructor(private auth: Auth) {}
 
-  signUp() {
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
+  signUp(email: string, password: string) {
+    createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
+        console.log(user);
         // ...
       })
       .catch((error) => {
@@ -28,8 +26,8 @@ export class AuthService {
       });
   }
 
-  signIn() {
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
+  signIn(email: string, password: string) {
+    signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
