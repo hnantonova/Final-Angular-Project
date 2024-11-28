@@ -1,0 +1,162 @@
+/* General Styles */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box;
+    padding: 20px;
+  }
+  
+  /* Top Section */
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 28vh; /* Set height for top section */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  }
+  
+  .info-section {
+    flex: 1;
+    max-width: 42%;
+    padding: 24px;
+    background-color: #fdeff5; /* Light pink */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .info-section h1 {
+    font-size: 1.8rem;
+    color: #b52b46; /* Dark pink */
+    margin-bottom: 10px;
+  }
+  
+  .info-section p {
+    font-size: 1rem;
+    color: #4a4a4a; /* Soft gray */
+  }
+  
+  /* Map Section */
+  .map-section {
+    flex: 1;
+    max-width: 50%;
+    height: 100%; /* Full height of top section */
+    background-color: #f7d8e2; /* Pale pink to match theme */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Form Section */
+  .form-section {
+    height: 50vh; /* Set height for form section */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fbe6e9; /* Lighter background for form */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #4a4a4a;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #e3b9c5; /* Pale border */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #f7d8e2; /* Pale pink */
+    border: none;
+    border-radius: 8px;
+    color: #4a4a4a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #e8a1c5; /* Darker pink */
+  }
+  
+  /* Media Queries for Mobile Devices */
+  @media (max-width: 768px) {
+    .top-section {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+    }
+  
+    .info-section,
+    .map-section {
+      max-width: 90%; /* Make sections take up more space on smaller screens */
+      margin-bottom: 20px;
+    }
+  
+    .form-section {
+      height: auto; /* Allow the form to take more space */
+    }
+  
+    .info-section h1 {
+      font-size: 1.5rem;
+    }
+  
+    .info-section p {
+      font-size: 0.9rem;
+    }
+  
+    input,
+    textarea {
+      font-size: 0.9rem;
+    }
+  
+    button {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .info-section h1 {
+      font-size: 1.3rem;
+    }
+  
+    .info-section p {
+      font-size: 0.8rem;
+    }
+  
+    input,
+    textarea {
+      font-size: 0.8rem;
+    }
+  
+    button {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  }
+  
