@@ -1,38 +1,58 @@
+/* Button Styling for the Login Form */
+.log-in-btn button {
+  background-color: #fae8f1; /* Match the navbar login button */
+  border: none;
+  color: #4a4a4a;
+  padding: 10px 20px; /* Slightly larger for better form aesthetics */
+  font-size: 16px; /* Increase for better visibility */
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%; /* Full width for a clean form look */
+  margin-top: 20px; /* Add space above the button */
+}
+
+.log-in-btn button:hover {
+  background-color: #e8a1c5; /* Match navbar hover effect */
+}
+
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-  background-color: #fdeff5; 
+  height: 100vh;
+  background-color: #fdeff5;
 }
 
 /* Card styling for the login form */
 .login-card {
-  background-color: #f7d8e2; 
-  border: 1px solid #e3b9c5; 
+  background-color: #f7d8e2;
+  border: 1px solid #e3b9c5;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 48px;
-  width: 350px; 
+  width: 350px;
   text-align: center;
   font-family: "Arial", sans-serif;
-  color: #4a4a4a; 
+  color: #4a4a4a;
 }
 
 /* Title styling */
 .login-card h1 {
   font-size: 1.8em;
-  color: #b52b46; 
+  color: #b52b46;
   margin-bottom: 20px;
 }
 
 /* Form group styling */
-.form-group {
+.log-in-group {
   margin-bottom: 20px;
   text-align: left;
 }
 
-.form-group label {
+.log-in-group label {
   display: block;
   font-size: 1em;
   font-weight: bold;
@@ -40,7 +60,7 @@
   color: #4a4a4a;
 }
 
-.form-group input {
+.log-in-group input {
   width: 100%;
   padding: 10px;
   font-size: 1em;
@@ -51,9 +71,9 @@
   transition: all 0.3s ease;
 }
 
-.form-group input:focus {
+.log-in-group input:focus {
   outline: none;
-  border-color: #b52b46; 
+  border-color: #b52b46;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -71,11 +91,11 @@ hr {
 
 .signup-link p {
   margin: 0;
-  color: #5e4a50; 
+  color: #5e4a50;
 }
 
 .signup-link a {
-  color: #d17399; 
+  color: #d17399;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
@@ -83,5 +103,10 @@ hr {
 }
 
 .signup-link a:hover {
-  color: #b52b46; 
+  color: #b52b46;
 }
+.log-in-btn button:disabled {
+  background-color: rgb(232, 232, 232);
+  cursor: not-allowed;
+}
+  

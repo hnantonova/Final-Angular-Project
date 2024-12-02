@@ -9,7 +9,14 @@
     <li><a routerLink="/contact">Contact</a></li>
   </ul>
   <div class="navbar-actions">
-    <button class="btn login-btn" routerLink="/login">Log In</button>
-    <button class="btn signup-btn" routerLink="/signup">Sign Up</button>
+    <div *ngIf="isLoggedIn$ | async; else notLoggedIn">
+      <p>Welcome, you are logged in!</p>
+      <button class="btn signup-btn" (click)="logout()">Sign Out</button>
+    </div>
   </div>
 </nav>
+
+<ng-template #notLoggedIn>
+  <button class="btn login-btn" routerLink="/login">Log In</button>
+  <button class="btn signup-btn" routerLink="/signup">Sign Up</button>
+</ng-template>

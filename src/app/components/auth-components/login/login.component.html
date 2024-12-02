@@ -1,22 +1,35 @@
 <div class="login-container">
-    <div class="login-card">
-      <h1>Log In</h1>
-      <div class="form-group">
+  <div class="login-card">
+    <h1>Log In</h1>
+
+    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
+      <div class="log-in-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Enter your email" />
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+        />
       </div>
-      <div class="form-group">
+      <div class="log-in-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter your password" />
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
       </div>
+
       <div class="log-in-btn">
-        <button (click)="signIn()">Log in</button>
+        <button type="submit" [disabled]="!logInForm.valid">Log in</button>
       </div>
-      <hr />
-      <div class="signup-link">
-        <p>Don't have an account?</p>
-        <a routerLink="/signup">Sign Up</a>
-      </div>
+    </form>
+    <hr />
+    <div class="signup-link">
+      <p>Don't have an account?</p>
+      <a routerLink="/signup">Sign Up</a>
     </div>
   </div>
-  
+</div>
