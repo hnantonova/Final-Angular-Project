@@ -7,16 +7,30 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FirebaseAuthError } from '../../../models/cardItemModule';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  emailError: string = '';
+  passwordError: string = '';
 
   logInForm = new FormGroup({
     email: new FormControl('', [
@@ -32,12 +46,25 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   onSubmit() {
-    console.log(this.logInForm.value); // Log the form values for debugging
-    const { email, password } = this.logInForm.value;
-    if (email && password) {
-      this.authService.signIn(email, password);
-    } else {
-      console.log('Please fill in both email and password.');
+    if (this.logInForm.valid) {
+      const { email, password } = this.logInForm.value;
+
+      this.authService.signIn(email || '', password || '').subscribe({
+        next: () => {
+          console.log('User logged in successfully');
+          this.emailError = '';
+          this.passwordError = '';
+        },
+        error: (error: FirebaseAuthError) => {
+          if (error.code === 'auth/user-not-found') {
+            this.emailError = 'No user exists with this email.';
+          } else if (error.code === 'auth/invalid-credential') {
+            this.passwordError = 'Invalid credentials. Please try again.';
+          } else {
+            this.emailError = 'Unexpected error.';
+          }
+        },
+      });
     }
   }
 }

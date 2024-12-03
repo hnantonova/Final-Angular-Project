@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   User,
 } from '@angular/fire/auth';
-import { map, Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,34 +18,33 @@ export class AuthService {
     this.currentUser$ = authState(this.auth);
   }
 
-  signUp(email: string, password: string, confirmPassword: string) {
-    createUserWithEmailAndPassword(this.auth, email, password)
+  signUp(email: string, password: string): Observable<void> {
+    const observable: Observable<void> = from(
+      createUserWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        }
+      )
+    );
+
+    return observable;
   }
 
-  signIn(email: string, password: string) {
+  signIn(email: string, password: string): Observable<void> {
+    const observable: Observable<void> = from(
     signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log({ user });
+        console.log(user);
         // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  }
+      }
+    )
+  );
+  return observable;
+}
 
   isLoggedIn(): Observable<boolean> {
     return this.currentUser$.pipe(map((user) => !!user));

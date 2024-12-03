@@ -3,3 +3,9 @@ export interface CardItem {
     addition: string,
     url: string
 }
+
+export interface FirebaseAuthError {
+    code: string;
+    message: string;
+  }
+  

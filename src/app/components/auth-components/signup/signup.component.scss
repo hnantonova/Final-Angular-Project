@@ -1,28 +1,9 @@
 .sign-up-btn button{
-  background-color: #fae8f1; /* Match the navbar login button */
-  border: none;
-  color: #4a4a4a; 
-  padding: 10px 20px; /* Slightly larger for better form aesthetics */
-  font-size: 16px; /* Increase for better visibility */
-  cursor: pointer;
-  border-radius: 20px; 
-  font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  transition: all 0.3s ease;
+  margin-top: 20px;
   width: 100%; /* Full width for a clean form look */
-  margin-top: 20px; /* Add space above the button */
+  
 }
 
-.sign-up-btn button:hover {
-  background-color: #e8a1c5; /* Match navbar hover effect */
-}
-
-.sign-up-btn button:disabled {
-  background-color: rgb(232, 232, 232);
-  cursor: not-allowed;
-}
-
-/* Lighter background for the sign-up container */
 .login-container {
     display: flex;
     justify-content: center;
@@ -52,35 +33,35 @@
   }
   
   /* Form group styling */
-  .signup-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
+  // .signup-group {
+  //   margin-bottom: 20px;
+  //   text-align: left;
+  // }
   
-  .signup-group label {
-    display: block;
-    font-size: 1em;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #4a4a4a;
-  }
+  // .signup-group label {
+  //   display: block;
+  //   font-size: 1em;
+  //   font-weight: bold;
+  //   margin-bottom: 8px;
+  //   color: #4a4a4a;
+  // }
   
-  .signup-group input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #e5d1d5;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
+  // .signup-group input {
+  //   width: 100%;
+  //   padding: 10px;
+  //   font-size: 1em;
+  //   border: 1px solid #e5d1d5;
+  //   border-radius: 8px;
+  //   background-color: #ffffff;
+  //   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  //   transition: all 0.3s ease;
+  // }
   
-  .signup-group input:focus {
-    outline: none;
-    border-color: #b52b46; /* Highlight border on focus */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
+  // .signup-group input:focus {
+  //   outline: none;
+  //   border-color: #b52b46; /* Highlight border on focus */
+  //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  // }
   
   /* Horizontal line */
   hr {
@@ -90,16 +71,16 @@
   }
   
   /* Login link section */
-  .signup-link {
+  .login-link {
     font-size: 0.9em;
   }
   
-  .signup-link p {
+  .login-link p {
     margin: 0;
     color: #5e4a50; /* Soft gray text */
   }
   
-  .signup-link a {
+  .login-link a {
     color: #d17399; /* Vibrant pink for links */
     text-decoration: none;
     font-weight: bold;
@@ -107,7 +88,7 @@
     cursor: pointer;
   }
   
-  .signup-link a:hover {
+  .login-link a:hover {
     color: #b52b46; /* Darker pink on hover */
   }
  

@@ -4,26 +4,65 @@
 
     <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
       <div class="log-in-group">
-        <label for="email">Email:</label>
-        <input
-          formControlName="email"
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-        />
+        <mat-form-field>
+          <mat-label for="email">Email:</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+          />
+          <mat-error *ngIf="emailError">{{ emailError }}</mat-error>
+        </mat-form-field>
+        <div
+          *ngIf="
+            logInForm.get('email')?.invalid &&
+            logInForm.get('email')?.touched &&
+            !emailError
+          "
+        >
+          <mat-error *ngIf="logInForm.get('email')?.errors?.['required']">
+            Email is required.
+          </mat-error>
+        </div>
       </div>
+
       <div class="log-in-group">
-        <label for="password">Password:</label>
-        <input
-          formControlName="password"
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-        />
+        <mat-form-field>
+          <mat-label for="password">Password:</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+          />
+          <!-- Show error if the password is incorrect -->
+        </mat-form-field>
+        <mat-error *ngIf="passwordError">{{ passwordError }}</mat-error>
+
+        <!-- Show validation errors if the input is invalid -->
+        <div
+          *ngIf="
+            logInForm.get('password')?.invalid &&
+            logInForm.get('password')?.touched &&
+            !passwordError
+          "
+        >
+          <mat-error *ngIf="logInForm.get('password')?.errors?.['required']">
+            Password is required.
+          </mat-error>
+          <mat-error *ngIf="logInForm.get('password')?.errors?.['minlength']">
+            Password must be at least 8 characters long.
+          </mat-error>
+        </div>
       </div>
 
       <div class="log-in-btn">
-        <button type="submit" [disabled]="!logInForm.valid">Log in</button>
+        <button mat-button type="submit" [disabled]="!logInForm.valid">
+          Log in
+        </button>
       </div>
     </form>
     <hr />

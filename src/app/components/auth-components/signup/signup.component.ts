@@ -9,16 +9,29 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FirebaseAuthError } from '../../../models/cardItemModule';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [RouterModule, 
+    ReactiveFormsModule, 
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
   emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  emailError: string = '';
 
   signUpForm = new FormGroup(
     {
@@ -40,7 +53,6 @@ export class SignupComponent {
 
   constructor(private authService: AuthService) {}
 
-
   passwordsMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
@@ -48,12 +60,29 @@ export class SignupComponent {
   }
 
   onSubmit() {
-    if(this.signUpForm.valid) {
-    const { email, password, confirmPassword } = this.signUpForm.value;
-    console.log('Form Submitted:', { email, password, confirmPassword });
-      this.authService.signUp(email || '', password || '', confirmPassword || '');
-    } else {
-      console.log('Form is invalid. Please check the fields.');
+    if (this.signUpForm.valid) {
+      const { email, password } = this.signUpForm.value;
+
+      this.authService.signUp(email || '', password || '').subscribe({
+        next: () => {
+          console.log('User signed up successfully');
+          this.emailError = ''; // Clear any existing error
+        },
+        error: (error: FirebaseAuthError) => {
+          if (error.code === 'auth/email-already-in-use') {
+            this.emailError = 'This email is already used.';
+          } else {
+            this.emailError = 'An unexpected error occurred. Please try again.';
+          }
+        },
+      });
     }
+  }
+
+  hasPasswordMismatch(): boolean {
+    return (
+      this.signUpForm.errors?.['passwordsMismatch'] &&
+      this.signUpForm.get('confirmPassword')?.touched
+    );
   }
 }
