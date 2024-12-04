@@ -20,8 +20,8 @@ export class AuthService {
 
   signUp(email: string, password: string): Observable<void> {
     const observable: Observable<void> = from(
-      createUserWithEmailAndPassword(this.auth, email, password)
-      .then((userCredential) => {
+      createUserWithEmailAndPassword(this.auth, email, password).then(
+        (userCredential) => {
           // Signed up
           const user = userCredential.user;
           console.log(user);
@@ -34,17 +34,17 @@ export class AuthService {
 
   signIn(email: string, password: string): Observable<void> {
     const observable: Observable<void> = from(
-    signInWithEmailAndPassword(this.auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        // ...
-      }
-    )
-  );
-  return observable;
-}
+      signInWithEmailAndPassword(this.auth, email, password).then(
+        (userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        }
+      )
+    );
+    return observable;
+  }
 
   isLoggedIn(): Observable<boolean> {
     return this.currentUser$.pipe(map((user) => !!user));
@@ -53,6 +53,7 @@ export class AuthService {
   getCurrentUser(): Observable<User | null> {
     return this.currentUser$;
   }
+
   async logout(): Promise<void> {
     await this.auth.signOut();
   }

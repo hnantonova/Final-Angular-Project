@@ -10,8 +10,12 @@
   </ul>
   <div class="navbar-actions">
     <div *ngIf="isLoggedIn$ | async; else notLoggedIn">
-      <p>Welcome, you are logged in!</p>
-      <button class="btn signup-btn" (click)="logout()">Sign Out</button>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'/user-profile'">User Profile</button>
+        <button mat-menu-item (click)="logout()">Sign Out</button>
+        </mat-menu>
+      
     </div>
   </div>
 </nav>

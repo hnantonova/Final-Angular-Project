@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { CardItem } from '../../models/cardItemModule';
+import { CardItem } from '../../models/cardItemModel';
 import { collection } from '../../card-item-collection';
 import { CardItemComponent } from '../shared/card-item/card-item.component';
 

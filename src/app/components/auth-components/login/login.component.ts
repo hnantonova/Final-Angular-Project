@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth/auth.service';
 import {
   FormControl,
@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FirebaseAuthError } from '../../../models/cardItemModule';
+import { FirebaseAuthError } from '../../../models/authErrorModel';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,7 +43,7 @@ export class LoginComponent {
     ]),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
     if (this.logInForm.valid) {
@@ -54,6 +54,7 @@ export class LoginComponent {
           console.log('User logged in successfully');
           this.emailError = '';
           this.passwordError = '';
+          this.router.navigate(['/']); // Redirect to the home route
         },
         error: (error: FirebaseAuthError) => {
           if (error.code === 'auth/user-not-found') {

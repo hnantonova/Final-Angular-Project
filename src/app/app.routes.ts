@@ -7,9 +7,12 @@ import { LoginComponent } from './components/auth-components/login/login.compone
 import { SignupComponent } from './components/auth-components/signup/signup.component';
 import { ContactComponent } from './navbar/contact-link/contact/contact.component';
 import { AboutComponent } from './navbar/contact-link/about/about.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component'; 
 
 export const routes: Routes = [
-    { path: '', component: DashboardComponent },
+
+    // { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', component: DashboardComponent },  
     { path: 'contact', component: ContactComponent },
     { path: 'about', component: AboutComponent },
 
@@ -20,5 +23,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
 
+    { path: 'user-profile', component: UserProfileComponent },
     
 ];

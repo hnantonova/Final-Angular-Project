@@ -10,17 +10,17 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FirebaseAuthError } from '../../../models/cardItemModule';
+import { FirebaseAuthError } from '../../../models/authErrorModel';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
-
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [RouterModule, 
-    ReactiveFormsModule, 
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -69,6 +69,7 @@ export class SignupComponent {
           this.emailError = ''; // Clear any existing error
         },
         error: (error: FirebaseAuthError) => {
+          console.log(error);
           if (error.code === 'auth/email-already-in-use') {
             this.emailError = 'This email is already used.';
           } else {
