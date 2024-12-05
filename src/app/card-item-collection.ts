@@ -1,4 +1,4 @@
-import { CardItem } from './models/cardItemModel';
+import { CardItem } from "./models/cardItemModel"; 
 
 export const collection: CardItem[] = [
   {

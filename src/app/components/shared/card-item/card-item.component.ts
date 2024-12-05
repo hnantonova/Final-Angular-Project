@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CardItem } from '../../../models/cardItemModel';
+import { CardItem } from '../../../models/cardItemModel';  
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-card-item',
   standalone: true,
-  imports: [RouterModule, MatCardModule],
+  imports: [RouterModule, MatCardModule, CardItemComponent],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.scss',
 })
