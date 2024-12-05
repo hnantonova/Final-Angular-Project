@@ -1,8 +1,28 @@
-<h2 mat-dialog-title>Install Angular</h2>
-<mat-dialog-content class="mat-typography"> 
-    
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions>
+<div class="modal-form">
+  <h2 mat-dialog-title class="title-modal">Create post</h2>
+  <mat-dialog-content class="mat-typography"> </mat-dialog-content>
+
+  <form [formGroup]="myForm" class="example-form" (ngSubmit)="createPost()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="What's your title?" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="What's your experience..."></textarea>
+    </mat-form-field>
+
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button
+        type="submit"
+        mat-button
+        [mat-dialog-close]="true"
+        cdkFocusInitial
+      >
+        Post
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>
