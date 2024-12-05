@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCreatePostComponent } from '../dialog-create-post/dialog-create-post.component';
+import { collectionTypes } from '../../models/collection-types.enum';
 
 @Component({
   selector: 'app-insights',
