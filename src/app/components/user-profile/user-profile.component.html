@@ -1,1 +1,16 @@
-<p>user-profile works!</p>
+<div *ngIf="posts$ | async as posts; else loading">
+  <div *ngIf="posts.length > 0; else noPosts">
+    <div *ngFor="let post of posts" class="post-card">
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.body }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading posts...</p>
+</ng-template>
+
+<ng-template #noPosts>
+  <p>No posts found.</p>
+</ng-template>

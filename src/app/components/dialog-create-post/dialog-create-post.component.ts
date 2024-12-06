@@ -5,12 +5,14 @@ import { collectionTypes } from '../../models/collection-types.enum';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FirestoreService } from '../../firestore/firestore.service';
+
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-dialog-create-post',
@@ -26,14 +28,15 @@ import {
   styleUrl: './dialog-create-post.component.scss',
 })
 export class DialogCreatePostComponent {
-  method: any = '';
+  data: any = '';
   myForm: FormGroup;
-
+  userId: string = '';
   constructor(
     private firestoreService: FirestoreService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService
   ) {
-    this.method = inject(MAT_DIALOG_DATA);
+    this.data = inject(MAT_DIALOG_DATA);
 
     this.myForm = this.fb.group({
       title: ['', [Validators.required]],
@@ -42,26 +45,14 @@ export class DialogCreatePostComponent {
   }
 
   ngOnInit() {
-    console.log(this.method);
+    this.authService.getCurrentUser().subscribe((user) => {
+      if (user) {
+        this.userId = user.uid;
+      }
+    });
   }
-
   createPost() {
     const { title, body } = this.myForm.value;
-
-
-    const res = this.firestoreService.createNewPost(title, body);
-
-    console.log({ res });
-
-    if (this.method === collectionTypes.MomsCollection) {
-      // send req to push in collection formoms
-      console.log('create post');
-    }
-    if (this.method === collectionTypes.TravelCollection) {
-      // send req to push in collection travel
-    }
-    if (this.method === collectionTypes.RecipesCollection) {
-      // send req to push in collection recepies
-    }
+    this.firestoreService.createNewPost(title, body, this.data.method, this.userId);
   }
 }

@@ -4,7 +4,12 @@
     Create post
   </button>
 </div>
-<div class="posts-list-content"></div>
+<div class="posts-list-content">
+  <div *ngFor="let post of postsResponse" class="post-card">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.body }}</p>
+  </div>
+</div>
 
 <ng-template #isAbleToCreate>
   <mat-card>

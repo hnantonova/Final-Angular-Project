@@ -5,12 +5,12 @@
   <form [formGroup]="myForm" class="example-form" (ngSubmit)="createPost()">
     <mat-form-field class="example-full-width">
       <mat-label>Title</mat-label>
-      <input matInput placeholder="What's your title?" />
+      <input matInput formControlName="title" placeholder="What's your title?" />
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="What's your experience..."></textarea>
+      <textarea matInput formControlName="body" placeholder="What's your experience..."></textarea>
     </mat-form-field>
 
     <mat-dialog-actions align="end">

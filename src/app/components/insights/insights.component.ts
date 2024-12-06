@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogCreatePostComponent } from '../dialog-create-post/dialog-create-post.component';
 import { collectionTypes } from '../../models/collection-types.enum';
+import { FirestoreService } from '../../firestore/firestore.service';
 
 @Component({
   selector: 'app-insights',
@@ -18,8 +19,11 @@ import { collectionTypes } from '../../models/collection-types.enum';
 })
 export class InsightsComponent {
   isLoggedIn$: Observable<boolean>;
-
-  constructor(private authService: AuthService) {
+  postsResponse: any = '';
+  constructor(
+    private authService: AuthService,
+    private firestoreService: FirestoreService
+  ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
 
@@ -32,5 +36,12 @@ export class InsightsComponent {
       },
     });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.firestoreService
+      .getAllPosts(collectionTypes.MomsCollection)
+      .then((posts) => {
+        this.postsResponse = posts;
+      })
+      .catch((error) => {});
+  }
 }
