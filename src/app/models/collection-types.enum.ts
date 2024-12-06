@@ -1,5 +1,5 @@
 export enum collectionTypes {
-  MomsCollection = 'post-for-moms-collection',
-  TravelCollection = 'post-travel-collection',
-  RecipesCollection = 'post-recipes-collection',
+  MomsCollection = 'forMoms',
+  TravelCollection = 'travel',
+  RecipesCollection = 'recipes',
 }
