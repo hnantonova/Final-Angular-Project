@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../auth/auth.service';
+import { DialogCreatePostComponent } from '../dialog-create-post/dialog-create-post.component';
+import { MatDialog } from '@angular/material/dialog';
+import { collectionTypes } from '../../models/collection-types.enum';
+import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../auth/auth.service';
 import { Observable } from 'rxjs';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogCreatePostComponent } from '../dialog-create-post/dialog-create-post.component';
-import { collectionTypes } from '../../models/collection-types.enum';
 import { FirestoreService } from '../../firestore/firestore.service';
 
 @Component({
@@ -20,6 +20,7 @@ import { FirestoreService } from '../../firestore/firestore.service';
 export class InsightsComponent {
   isLoggedIn$: Observable<boolean>;
   postsResponse: any = '';
+
   constructor(
     private authService: AuthService,
     private firestoreService: FirestoreService
@@ -36,12 +37,68 @@ export class InsightsComponent {
       },
     });
   }
+
   ngOnInit() {
+    this.refreshPosts();
+  }
+
+  likePost(postId: string) {
+    this.authService.getCurrentUser().subscribe({
+      next: async (user) => {
+        console.log(user?.uid);
+
+        if (!user) {
+          return;
+        }
+
+        const userId = user.uid;
+
+        const currentLikes = await this.firestoreService.getPostLikes(
+          postId,
+          collectionTypes.MomsCollection
+        );
+
+        console.log({ currentLikes });
+
+        if (currentLikes.includes(userId)) {
+          //dislike
+          this.firestoreService
+            .dislikePost(postId, userId, collectionTypes.MomsCollection)
+            .then(() => {
+              this.refreshPosts();
+            })
+            .catch((error) => {
+              console.error('Error liking post:', error);
+            });
+        } else {
+          //like
+          this.firestoreService
+            .likePost(postId, userId, collectionTypes.MomsCollection)
+            .then(() => {
+              this.refreshPosts();
+            })
+            .catch((error) => {
+              console.error('Error liking post:', error);
+            });
+        }
+      },
+    });
+  }
+
+  refreshPosts() {
     this.firestoreService
       .getAllPosts(collectionTypes.MomsCollection)
       .then((posts) => {
-        this.postsResponse = posts;
+        this.postsResponse = posts.map((post) => ({
+          ...post,
+          likes: post.likes || [],
+          likesLength: post.likes?.length || 0,
+        }));
+
+        console.log(this.postsResponse);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.error('Error fetching posts:', error);
+      });
   }
 }

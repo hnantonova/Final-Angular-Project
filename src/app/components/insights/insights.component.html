@@ -6,15 +6,23 @@
 </div>
 <div class="posts-list-content">
   <div *ngFor="let post of postsResponse" class="post-card">
+    <p>author: {{ post.userId }}</p>
     <h3>{{ post.title }}</h3>
     <p>{{ post.body }}</p>
-  </div>
-</div>
+    <div class="btn-container">
+      <button mat-icon-button aria-label="Like" (click)="likePost(post.id)">
+        <mat-icon>favorite</mat-icon>
+      </button>
 
-<ng-template #isAbleToCreate>
-  <mat-card>
-    <div class="message-not-signed-in">
-      Please sign-in first in order to create a post.
+      <label> {{ post.likesLength }} </label>
     </div>
-  </mat-card>
-</ng-template>
+  </div>
+
+  <ng-template #isAbleToCreate>
+    <mat-card>
+      <div class="message-not-signed-in">
+        Please sign-in first in order to create a post.
+      </div>
+    </mat-card>
+  </ng-template>
+</div>
