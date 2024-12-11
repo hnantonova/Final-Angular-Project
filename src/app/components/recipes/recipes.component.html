@@ -1,11 +1,14 @@
 <div class="recipes-heading" *ngIf="isLoggedIn$ | async; else isAbleToCreate">
-    <button mat-fab extended (click)="openDialog()">
-      <mat-icon>add</mat-icon>
-      Create post
-    </button>
+  <button mat-fab extended (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+    Create post
+  </button>
+</div>
+<div class="posts-list-content">
+  <div *ngFor="let post of postsResponse" class="post-card">
+    <app-post [post]="post" (refreshPosts)="refreshPosts()" [collectionType]="'recipes'"></app-post>
   </div>
-  <div class="posts-list-content"></div>
-  
+
   <ng-template #isAbleToCreate>
     <mat-card>
       <div class="message-not-signed-in">
@@ -13,3 +16,4 @@
       </div>
     </mat-card>
   </ng-template>
+</div>

@@ -4,7 +4,19 @@
       Create post
     </button>
   </div>
-  <div class="posts-list-content"></div>
+  <div class="posts-list-content">
+    <div *ngFor="let post of postsResponse" class="post-card">
+      <p>user: {{ post.userId }}</p>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.body }}</p>
+      <div class="btn-container">
+        <button mat-icon-button aria-label="Like" (click)="likePost(post.id)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+  
+        <label> {{ post.likesLength }} </label>
+    </div>
+  </div>
   
   <ng-template #isAbleToCreate>
     <mat-card>
