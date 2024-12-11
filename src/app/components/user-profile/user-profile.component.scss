@@ -1,0 +1,56 @@
+/* User Profile Styles */
+
+/* Container for post cards */
+.post-card {
+    background-color: #f9f9f9; /* Light background for the card */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    margin: 1rem 0; /* Spacing between cards */
+    padding: 1.5rem; /* Internal spacing */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+  }
+  
+  /* Title styling */
+  .post-card h3 {
+    margin-top: 0; /* Remove default top margin */
+    font-size: 1.5rem; /* Larger font for title */
+    color: #333; /* Dark color for readability */
+  }
+  
+  /* Body text styling */
+  .post-card p {
+    font-size: 1rem;
+    color: #555; /* Slightly lighter color for body text */
+    margin: 0.5rem 0 0; /* Spacing after title */
+    line-height: 1.6; /* Better readability */
+  }
+  
+  /* Hover effect for post card */
+  .post-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  }
+  
+  /* Loading and no-posts templates */
+  p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #777;
+  }
+  
+  /* Responsive design for small screens */
+  @media (max-width: 600px) {
+    .post-card {
+      padding: 1rem;
+    }
+  
+    .post-card h3 {
+      font-size: 1.2rem;
+    }
+  
+    .post-card p {
+      font-size: 0.9rem;
+    }
+  }
+  

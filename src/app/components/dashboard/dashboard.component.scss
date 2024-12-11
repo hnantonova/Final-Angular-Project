@@ -1,5 +1,38 @@
+// .dashboard-items-wrapper {
+//     display: flex;
+//     justify-content: space-evenly;
+//     margin-top: 200px;
+// }
 .dashboard-items-wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 200px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 200px;
+  padding-bottom: 60px;
+
+  .dashboard__item {
+    flex: 0 0 33.33%;
+
+    @media (max-width: 1023px) {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+  }
+
+  /* Responsive design for mobile */
+  @media (max-width: 600px) {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the items */
+    gap: 1rem; /* Add spacing between items */
+    margin-top: 10px; /* Reduce top margin for smaller screens */
+  }
+}
+
+.dashboard-items-wrapper > div {
+  flex: 1; /* Ensure items take up available space equally */
+  max-width: 80%; /* Restrict the width of items for better fit */
 }
