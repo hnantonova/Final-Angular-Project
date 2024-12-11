@@ -6,11 +6,23 @@
     <mat-form-field class="example-full-width">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title" placeholder="What's your title?" />
+      <mat-error *ngIf="myForm.get('title')?.hasError('required')">
+        You must add a title.
+      </mat-error>
+      <mat-error *ngIf="myForm.get('title')?.hasError('maxlength')">
+        Title can be max 40 characters.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <mat-label>Description</mat-label>
       <textarea matInput formControlName="body" placeholder="What's your experience..."></textarea>
+      <mat-error *ngIf="myForm.get('body')?.hasError('required')">
+        There must be a description text.
+      </mat-error>
+      <mat-error *ngIf="myForm.get('body')?.hasError('maxlength')">
+        Description can be max 300 characters.
+      </mat-error>
     </mat-form-field>
 
     <mat-dialog-actions align="end">
@@ -18,8 +30,8 @@
       <button
         type="submit"
         mat-button
+        [disabled]="myForm.invalid"
         [mat-dialog-close]="true"
-        cdkFocusInitial
       >
         Post
       </button>
