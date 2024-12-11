@@ -12,6 +12,7 @@ import {
   doc,
   arrayUnion,
   arrayRemove,
+  deleteDoc
 } from '@angular/fire/firestore';
 import { collectionTypes } from '../models/collection-types.enum';
 import { Observable, of } from 'rxjs';
@@ -110,4 +111,28 @@ export class FirestoreService {
       return [];
     }
   }
+
+  async updatePost(collectionType: string, postId: string, updatedData: any): Promise<void> {
+    const postRef = doc(this.firestore, `${collectionType}/${postId}`);
+    try {
+      await updateDoc(postRef, updatedData);
+      console.log('Post updated successfully');
+    } catch (error) {
+      console.error('Error updating post:', error);
+      throw error;
+    }
+  }
+
+  async deletePost(collectionType: string, postId: string): Promise<void> {
+    const postRef = doc(this.firestore, `${collectionType}/${postId}`);
+    try {
+      await deleteDoc(postRef);
+      console.log('Post deleted successfully');
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      throw error;
+    }
+  }
+  
+
 }

@@ -1,9 +1,46 @@
 <div *ngIf="posts$ | async as posts; else loading">
   <div *ngIf="posts.length > 0; else noPosts">
     <div *ngFor="let post of posts" class="post-card">
-      <p>user: {{ post.userId }}</p>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.body }}</p>
+      <ng-container *ngIf="editState[post.id]; else viewMode">
+        <!-- Edit Mode -->
+        <form [formGroup]="editForms[post.id]" (ngSubmit)="updatePost(post.id)">
+          <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" />
+            <mat-error *ngIf="editForms[post.id].get('title')?.hasError('required')">
+              Title is required
+            </mat-error>
+            <mat-error *ngIf="editForms[post.id].get('title')?.hasError('minlength')">
+              Title must be at least 5 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Body</mat-label>
+            <textarea matInput formControlName="body"></textarea>
+            <mat-error *ngIf="editForms[post.id].get('body')?.hasError('required')">
+              Body is required
+            </mat-error>
+            <mat-error *ngIf="editForms[post.id].get('body')?.hasError('minlength')">
+              Body must be at least 10 characters
+            </mat-error>
+          </mat-form-field>
+
+          <div class="button-group">
+          <button class="action-btn" mat-button type="submit">Save</button>
+          <button class="action-btn" mat-button (click)="toggleEditState(post.id, post.title, post.body)">Cancel</button>
+        </div>
+        </form>
+      </ng-container>
+      <ng-template #viewMode>
+        
+        <!-- View Mode -->
+        <p>User: {{ post.userId }}</p>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.body }}</p>
+        <button class="action-btn" mat-button (click)="toggleEditState(post.id, post.title, post.body)">Edit</button>
+        <button class="action-btn" mat-button (click)="deletePost(post.id)">Delete</button>
+      </ng-template>
     </div>
   </div>
 </div>
