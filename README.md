@@ -1,27 +1,54 @@
-# ForumApp
+# Forum App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+This is a forum application built with Angular. The application allows users to create, view, and participate in discussion threads.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- User authentication and authorization
+- Create, edit, and delete posts
+- Like and unlike posts
+- User profiles
+- Responsive design
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/forum-app.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd forum-app
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-## Build
+## Running the Application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+To run the application locally, use the following command:
+```bash
+ng serve
+```
+Then open your browser and navigate to `http://localhost:4200/`.
 
-## Running unit tests
+The application is also deployed in Netlify.
+You can navigate to it by using the following link: 
+https://forum-app-hristina.netlify.app
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Building the Application
 
-## Running end-to-end tests
+To build the application for production, use the following command:
+```bash
+ng build
+```
+The build artifacts will be stored in the `dist/` directory.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Contributing
 
-## Further help
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
