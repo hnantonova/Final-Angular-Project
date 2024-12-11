@@ -9,22 +9,13 @@
   padding: 20px;
 }
 
-/* Top Section */
-.top-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 28vh; /* Set height for top section */
-  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-}
-
 .info-section {
-  flex: 1;
-  max-width: 42%;
+  max-width: 100%;
   padding: 24px;
   background-color: #fdeff5; /* Light pink */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  
 }
 
 .info-section h1 {
@@ -35,7 +26,8 @@
 
 .info-section p {
   font-size: 1rem;
-  color: #4a4a4a; /* Soft gray */
+  color: #4a4a4a; 
+  
 }
 
 /* Form Section */
@@ -47,6 +39,7 @@
   background-color: #fbe6e9; /* Lighter background for form */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 form {
@@ -58,6 +51,7 @@ form {
 .form-group {
   display: flex;
   flex-direction: column;
+  
 }
 
 label {
@@ -93,15 +87,10 @@ button:hover {
 
 /* Media Queries for Mobile Devices */
 @media (max-width: 768px) {
-  .top-section {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
+  
 
-  .info-section,
-  .map-section {
-    max-width: 90%; /* Make sections take up more space on smaller screens */
+  .info-section {
+    max-width: 100%; /* Make sections take up more space on smaller screens */
     margin-bottom: 20px;
   }
 
