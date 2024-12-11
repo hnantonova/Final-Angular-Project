@@ -1,8 +1,4 @@
-// .dashboard-items-wrapper {
-//     display: flex;
-//     justify-content: space-evenly;
-//     margin-top: 200px;
-// }
+
 .dashboard-items-wrapper {
   display: flex;
   justify-content: space-evenly;
@@ -25,14 +21,14 @@
 
   /* Responsive design for mobile */
   @media (max-width: 600px) {
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center the items */
-    gap: 1rem; /* Add spacing between items */
-    margin-top: 10px; /* Reduce top margin for smaller screens */
+    flex-direction: column; 
+    align-items: center;
+    gap: 1rem; 
+    margin-top: 10px; 
   }
 }
 
 .dashboard-items-wrapper > div {
-  flex: 1; /* Ensure items take up available space equally */
-  max-width: 80%; /* Restrict the width of items for better fit */
+  flex: 1; 
+  max-width: 80%; 
 }

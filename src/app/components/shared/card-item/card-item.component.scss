@@ -7,34 +7,34 @@
 
 .styled-card {
     justify-content: space-evenly;
-    background-color: #fbe6e9; /* Pale pink */
-    color: #333; /* Soft dark for text */
-    border: 1px solid #e5d1d5; /* Subtle border to match the navbar */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Gentle shadow for depth */
-    border-radius: 8px; /* Rounded corners */
+    background-color: #fbe6e9; 
+    color: #333; 
+    border: 1px solid #e5d1d5; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 300px; /* Fixed width for uniformity */
+    width: 300px; 
     cursor: pointer;
 }
 
 .styled-card:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    transform: scale(1.05); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .styled-card mat-card-content {
-    padding: 16px; /* Space inside the card */
-    text-align: center; /* Centered text */
+    padding: 16px; 
+    text-align: center; 
 }
 
 .styled-card h3 {
     font-size: 1.2em;
     margin: 0 0 10px;
-    color: #b52b46; /* Slightly darker pink for contrast */
+    color: #b52b46; 
 }
 
 .styled-card p {
     font-size: 1em;
     margin: 0;
-    color: #5e4a50; /* Soft gray for secondary text */
+    color: #5e4a50; 
 }

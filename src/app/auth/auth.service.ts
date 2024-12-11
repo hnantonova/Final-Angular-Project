@@ -39,7 +39,7 @@ export class AuthService {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          // ...
+          
         }
       )
     );

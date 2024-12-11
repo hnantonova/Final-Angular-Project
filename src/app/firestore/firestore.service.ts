@@ -66,7 +66,7 @@ export class FirestoreService {
     return collectionData(userQuery, { idField: 'id' }) as Observable<any[]>;
   }
 
-  // async deleteOnePost(id: string) {}
+  
 
   async likePost(postId: string, uid: string, collectionType: string) {
     const postRef = doc(this.firestore, `${collectionType}/${postId}`);
@@ -105,7 +105,7 @@ export class FirestoreService {
 
     if (docSnap.exists()) {
       const postData = docSnap.data();
-      return postData['likes'] || []; // Return the likes array or an empty array if undefined
+      return postData['likes'] || []; 
     } else {
       console.error(`Post with ID ${postId} not found.`);
       return [];

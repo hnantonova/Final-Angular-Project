@@ -1,39 +1,37 @@
-/* User Profile Styles */
-
 /* Container for post cards */
 .post-card {
-    background-color: #f9f9f9; /* Light background for the card */
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    margin: 1rem 0; /* Spacing between cards */
-    padding: 1.5rem; /* Internal spacing */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    margin: 1rem 0; 
+    padding: 1.5rem; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
     text-align: left;
   }
   
   /* Title styling */
   .post-card h3 {
-    margin-top: 0; /* Remove default top margin */
-    font-size: 1.5rem; /* Larger font for title */
-    color: #333; /* Dark color for readability */
+    margin-top: 0; 
+    font-size: 1.5rem; 
+    color: #333; 
     text-align: left;
   }
   
   /* Body text styling */
   .post-card p {
     font-size: 1rem;
-    color: #555; /* Slightly lighter color for body text */
-    margin: 0.5rem 0 0; /* Spacing after title */
-    line-height: 1.6; /* Better readability */
+    color: #555; 
+    margin: 0.5rem 0 0; 
+    line-height: 1.6; 
     text-align: left;
     margin-bottom: 15px;
   }
   
   /* Hover effect for post card */
   .post-card:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
   }
   
   /* Loading and no-posts templates */
@@ -55,36 +53,34 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   
     &:hover {
-      background-color: #f2a9d1; /* Slightly darker shade for hover effect */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+      background-color: #f2a9d1; 
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
     }
   
     &:active {
-      transform: scale(0.95); /* Slightly shrink the button on click */
+      transform: scale(0.95); 
     }
   }
   /* Form in edit mode */
 .edit-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem; /* Spacing between elements */
+  gap: 1rem; 
 }
 
 /* Buttons container */
 .button-group {
   display: flex;
-  gap: 0.5rem; /* Spacing between buttons */
-  justify-content: center; /* Center align buttons */
-  margin-top: 1rem; /* Add space above buttons */
+  gap: 0.5rem; 
+  justify-content: center; 
+  margin-top: 1rem; 
 }
 
-/* Ensure textarea and input take full width */
+/*textarea and input full width */
 mat-form-field {
   width: 100%;
 }
 
-  
-  /* Responsive design for small screens */
   @media (max-width: 600px) {
     .post-card {
       padding: 1rem;

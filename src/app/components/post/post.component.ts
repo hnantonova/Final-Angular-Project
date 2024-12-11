@@ -47,7 +47,7 @@ export class PostComponent {
         console.log({ currentLikes });
 
         if (currentLikes.includes(userId)) {
-          // dislike
+          // unlike
           this.firestoreService
             .dislikePost(postId, userId, this.collectionType)
             .then(() => {
