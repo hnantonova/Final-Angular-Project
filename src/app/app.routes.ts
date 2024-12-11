@@ -8,6 +8,7 @@ import { SignupComponent } from './components/auth-components/signup/signup.comp
 import { ContactComponent } from './navbar/contact-link/contact/contact.component';
 import { AboutComponent } from './navbar/contact-link/about/about.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component'; 
+import { ProfileGuard } from './guards/profile.guard';
 
 export const routes: Routes = [
 
@@ -23,6 +24,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
 
-    { path: 'user-profile', component: UserProfileComponent },
+    { path: 'user-profile', component: UserProfileComponent, canActivate: [ProfileGuard] },
     
 ];
