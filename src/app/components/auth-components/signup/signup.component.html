@@ -41,6 +41,12 @@
             id="password"
             placeholder="Enter your password"
           />
+          <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+            Password is required.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">
+            Password should be at least 8 characters.
+          </mat-error>
         </mat-form-field>
       </div>
 
