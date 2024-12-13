@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../../auth/auth.service';
 import {
   FormControl,
@@ -51,7 +51,7 @@ export class SignupComponent {
     { validators: this.passwordsMatchValidator }
   );
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   passwordsMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
@@ -67,6 +67,7 @@ export class SignupComponent {
         next: () => {
           console.log('User signed up successfully');
           this.emailError = ''; // Clear any existing error
+          this.router.navigate(['/']); // Redirect to the home route
         },
         error: (error: FirebaseAuthError) => {
           console.log(error);
