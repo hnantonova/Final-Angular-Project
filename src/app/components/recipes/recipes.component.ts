@@ -49,6 +49,49 @@ export class RecipesComponent {
     this.refreshPosts();
   }
 
+  likePost(postId: string) {
+    this.authService.getCurrentUser().subscribe({
+      next: async (user) => {
+        console.log(user?.uid);
+
+        if (!user) {
+          return;
+        }
+
+        const userId = user.uid;
+
+        const currentLikes = await this.firestoreService.getPostLikes(
+          postId,
+          collectionTypes.MomsCollection
+        );
+
+        console.log({ currentLikes });
+
+        if (currentLikes.includes(userId)) {
+          //dislike
+          this.firestoreService
+            .dislikePost(postId, userId, collectionTypes.MomsCollection)
+            .then(() => {
+              this.refreshPosts();
+            })
+            .catch((error) => {
+              console.error('Error liking post:', error);
+            });
+        } else {
+          //like
+          this.firestoreService
+            .likePost(postId, userId, collectionTypes.MomsCollection)
+            .then(() => {
+              this.refreshPosts();
+            })
+            .catch((error) => {
+              console.error('Error liking post:', error);
+            });
+        }
+      },
+    });
+  }
+
   refreshPosts() {
     console.log('refresh');
 
