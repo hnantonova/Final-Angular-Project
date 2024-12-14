@@ -62,7 +62,7 @@ export class RecipesComponent {
 
         const currentLikes = await this.firestoreService.getPostLikes(
           postId,
-          collectionTypes.MomsCollection
+          collectionTypes.RecipesCollection
         );
 
         console.log({ currentLikes });
@@ -70,7 +70,7 @@ export class RecipesComponent {
         if (currentLikes.includes(userId)) {
           //dislike
           this.firestoreService
-            .dislikePost(postId, userId, collectionTypes.MomsCollection)
+            .dislikePost(postId, userId, collectionTypes.RecipesCollection)
             .then(() => {
               this.refreshPosts();
             })
@@ -80,7 +80,7 @@ export class RecipesComponent {
         } else {
           //like
           this.firestoreService
-            .likePost(postId, userId, collectionTypes.MomsCollection)
+            .likePost(postId, userId, collectionTypes.RecipesCollection)
             .then(() => {
               this.refreshPosts();
             })
