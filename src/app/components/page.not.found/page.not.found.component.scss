@@ -1,0 +1,24 @@
+.page-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: white; 
+  
+    .error-code {
+      font-size: 100px;
+      font-weight: bold;
+      color: #810814; /* Red color for the error code */
+    }
+  
+    .error-message {
+      font-size: 14px;
+      color: #d15d78;;
+      margin-bottom: 20px;
+    }
+  
+   
+  }
+  
