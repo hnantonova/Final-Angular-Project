@@ -9,12 +9,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { FirestoreService } from '../../firestore/firestore.service';
-
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-travel',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatCardModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    PostComponent,
+  ],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss',
 })
