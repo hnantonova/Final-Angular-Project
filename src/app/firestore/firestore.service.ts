@@ -12,7 +12,7 @@ import {
   doc,
   arrayUnion,
   arrayRemove,
-  deleteDoc
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { collectionTypes } from '../models/collection-types.enum';
 import { Observable, of } from 'rxjs';
@@ -66,8 +66,8 @@ export class FirestoreService {
     return collectionData(userQuery, { idField: 'id' }) as Observable<any[]>;
   }
 
-  
 
+  
   async likePost(postId: string, uid: string, collectionType: string) {
     const postRef = doc(this.firestore, `${collectionType}/${postId}`);
 
@@ -105,14 +105,18 @@ export class FirestoreService {
 
     if (docSnap.exists()) {
       const postData = docSnap.data();
-      return postData['likes'] || []; 
+      return postData['likes'] || [];
     } else {
       console.error(`Post with ID ${postId} not found.`);
       return [];
     }
   }
 
-  async updatePost(collectionType: string, postId: string, updatedData: any): Promise<void> {
+  async updatePost(
+    collectionType: string,
+    postId: string,
+    updatedData: any
+  ): Promise<void> {
     const postRef = doc(this.firestore, `${collectionType}/${postId}`);
     try {
       await updateDoc(postRef, updatedData);
@@ -133,6 +137,22 @@ export class FirestoreService {
       throw error;
     }
   }
-  
 
+  async getPostByUserId(collectionType: string, postId: string): Promise<any> {
+    try {
+      const docRef = doc(this.firestore, collectionType, postId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const postData = docSnap.data();
+        return postData || null;
+      } else {
+        console.error(`Post with ID ${postId} not found.`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching post by user ID:', error);
+      return null;
+    }
+  }
 }
