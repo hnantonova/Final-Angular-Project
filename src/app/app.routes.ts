@@ -11,6 +11,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { ProfileGuard } from './guards/profile.guard';
 import { PostsComponent } from './navbar/contact-link/posts/posts.component';
 import { PostDetailsComponent } from './components/shared/post-details/post-details.component';
+import { LoginGuard } from './guards/login.guard';
+import { SignupGuard } from './guards/signup.guars';
+import { PageNotFoundComponent } from './components/page.not.found/page.not.found.component'; 
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,13 +26,13 @@ export const routes: Routes = [
   { path: 'recipes', component: RecipesComponent },
   { path: 'travel', component: TravelComponent },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard], },
+  { path: 'signup', component: SignupComponent, canActivate: [SignupGuard], },
   {
     path: 'details/:id/:collectionType',
     component: PostDetailsComponent,
   },
-  // { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
   {
     path: 'user-profile',
     component: UserProfileComponent,
