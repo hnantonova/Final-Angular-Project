@@ -6,6 +6,53 @@
 </div>
 <div class="posts-list-content">
   <div *ngFor="let post of postsResponse" class="post-card">
+    <ng-container *ngIf="editState[post.id]; else viewMode">
+      <!-- Edit Mode -->
+      <form [formGroup]="editForms[post.id]" (ngSubmit)="updatePost(post.id)" class="form-edit">
+        <!-- Title Field -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" />
+          <mat-error *ngIf="editForms[post.id].get('title')?.hasError('required')">
+            Title is required
+          </mat-error>
+          <mat-error *ngIf="editForms[post.id].get('title')?.hasError('minlength')">
+            Title must be at least 5 characters
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Body Field -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Body</mat-label>
+          <textarea matInput formControlName="body"></textarea>
+          <mat-error *ngIf="editForms[post.id].get('body')?.hasError('required')">
+            Body is required
+          </mat-error>
+          <mat-error *ngIf="editForms[post.id].get('body')?.hasError('minlength')">
+            Body must be at least 10 characters
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+          <button class="action-btn save-btn" mat-button color="primary" type="submit">
+            Save
+          </button>
+          <button
+            class="action-btn cancel-btn"
+            mat-button
+            color="warn"
+            type="button"
+            (click)="toggleEditState(post.id, post.title, post.body)"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </ng-container>
+
+    <ng-template #viewMode>
+      <!-- View Mode -->
     <p>author: {{ post.userId }}</p>
     <h3>{{ post.title }}</h3>
     <p>{{ post.body }}</p>
@@ -15,13 +62,21 @@
       </button>
 
       <label> {{ post.likesLength }} </label>
-      
-       <!-- Open button -->
-       <button class="action-btn" mat-button (click)="openPost(post.id)">
-        Open
-      </button>
-    </div>
-  </div>
+ <!-- Edit and Delete Buttons -->
+ <div *ngIf="post.userId === userId">
+  <button class="action-btn" mat-button (click)="toggleEditState(post.id, post.title, post.body)">
+    Edit
+  </button>
+  <button class="action-btn" mat-button (click)="deletePost(post.id)">
+    Delete
+  </button>
+</div>
+<button class="action-btn" mat-button (click)="openPost(post.id)">
+  Open
+</button>
+</div>
+</ng-template>
+</div>
 
   <ng-template #isAbleToCreate>
     <mat-card>

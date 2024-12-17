@@ -60,7 +60,11 @@ mat-card {
   margin-right: 8px; 
 }
 
-
+.form-edit {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Responsive design */
 @media (max-width: 600px) {
