@@ -9,7 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { FirestoreService } from '../../firestore/firestore.service';
-import { PostComponent } from '../post/post.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-travel',
@@ -19,7 +20,6 @@ import { PostComponent } from '../post/post.component';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    PostComponent,
   ],
   templateUrl: './travel.component.html',
   styleUrl: './travel.component.scss',
@@ -30,7 +30,8 @@ export class TravelComponent {
 
   constructor(
     private authService: AuthService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router,
   ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
@@ -106,6 +107,11 @@ export class TravelComponent {
       .catch((error) => {
         console.error('Error fetching posts:', error);
       });
+  }
+
+  openPost(postId: string) {
+    console.log('Open post with ID:', postId);
+    this.router.navigate(['/details', postId, collectionTypes.TravelCollection]);
   }
 }
 

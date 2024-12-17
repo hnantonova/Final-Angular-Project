@@ -7,9 +7,11 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../../firestore/firestore.service';
-import { PostComponent } from '../post/post.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-recipes',
@@ -19,7 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatButtonModule,
     MatIcon,
-    PostComponent,
   ],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.scss',
@@ -30,7 +31,8 @@ export class RecipesComponent {
 
   constructor(
     private authService: AuthService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router,
   ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
@@ -109,5 +111,10 @@ export class RecipesComponent {
       .catch((error) => {
         console.error('Error fetching posts:', error);
       });
+  }
+
+  openPost(postId: string) {
+    console.log('Open post with ID:', postId);
+    this.router.navigate(['/details', postId, collectionTypes.RecipesCollection]);
   }
 }
