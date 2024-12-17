@@ -9,11 +9,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../auth/auth.service';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../../firestore/firestore.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-insights',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatCardModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatCardModule, 
+    ],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.scss',
 })
@@ -23,7 +26,8 @@ export class InsightsComponent {
 
   constructor(
     private authService: AuthService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router,
   ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
@@ -100,5 +104,10 @@ export class InsightsComponent {
       .catch((error) => {
         console.error('Error fetching posts:', error);
       });
+  }
+  openPost(postId: string) {
+    console.log('Open post with ID:', postId);
+    this.router.navigate(['/details', postId, collectionTypes.MomsCollection]);
+  
   }
 }
