@@ -32,10 +32,10 @@ export const routes: Routes = [
     path: 'details/:id/:collectionType',
     component: PostDetailsComponent,
   },
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
   {
     path: 'user-profile',
     component: UserProfileComponent,
     canActivate: [ProfileGuard],
   },
+  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
 ];
