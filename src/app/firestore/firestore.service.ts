@@ -67,7 +67,7 @@ export class FirestoreService {
   }
 
 
-  
+
   async likePost(postId: string, uid: string, collectionType: string) {
     const postRef = doc(this.firestore, `${collectionType}/${postId}`);
 
