@@ -11,7 +11,7 @@
 
   <div class="post-actions" *ngIf="isLoggedIn$ | async">
     <div class="btn-container">
-      <button mat-icon-button aria-label="Like" (click)="likePost(post.id)">
+      <button mat-icon-button aria-label="Like" (click)="likePost()">
         <mat-icon>favorite</mat-icon>
       </button>
 

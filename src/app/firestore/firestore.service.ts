@@ -66,7 +66,17 @@ export class FirestoreService {
     return collectionData(userQuery, { idField: 'id' }) as Observable<any[]>;
   }
 
-
+  async getPostLikesforDetails(postId: string, collectionType: string): Promise<string[]> {
+    const postDocRef = doc(this.firestore, `${collectionType}/${postId}`);
+    const postSnapshot = await getDoc(postDocRef);
+  
+    if (postSnapshot.exists()) {
+      const postData = postSnapshot.data();
+      return postData['likes'] || []; // Return likes array or empty array
+    }
+  
+    throw new Error('Post not found');
+  }
 
   async likePost(postId: string, uid: string, collectionType: string) {
     const postRef = doc(this.firestore, `${collectionType}/${postId}`);
