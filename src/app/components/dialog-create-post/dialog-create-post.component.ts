@@ -43,8 +43,8 @@ export class DialogCreatePostComponent {
     this.data = inject(MAT_DIALOG_DATA);
 
     this.myForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(40)]],
-      body: ['', [Validators.required, Validators.maxLength(300)]],
+      title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(40)]],
+      body: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(300)]],
     });
   }
 

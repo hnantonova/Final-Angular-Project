@@ -9,6 +9,9 @@
       <mat-error *ngIf="myForm.get('title')?.hasError('required')">
         You must add a title.
       </mat-error>
+      <mat-error *ngIf="myForm.get('title')?.hasError('minlength')">
+        Title must be at least 5 characters.
+      </mat-error>
       <mat-error *ngIf="myForm.get('title')?.hasError('maxlength')">
         Title can be max 40 characters.
       </mat-error>
@@ -20,8 +23,11 @@
       <mat-error *ngIf="myForm.get('body')?.hasError('required')">
         There must be a description text.
       </mat-error>
+      <mat-error *ngIf="myForm.get('body')?.hasError('minlength')">
+        Body must be at least 10 characters.
+      </mat-error>
       <mat-error *ngIf="myForm.get('body')?.hasError('maxlength')">
-        Description can be max 300 characters.
+        Body can be max 300 characters.
       </mat-error>
     </mat-form-field>
 
