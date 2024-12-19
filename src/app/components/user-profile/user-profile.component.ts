@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'], // Corrected from `styleUrl` to `styleUrls`
 })
@@ -39,15 +40,32 @@ export class UserProfileComponent {
       }
     });
   }
+
   toggleEditState(postId: string, currentTitle: string, currentBody: string) {
-    this.editState[postId] = !this.editState[postId];
-    if (this.editState[postId] && !this.editForms[postId]) {
-      this.editForms[postId] = this.fb.group({
-        title: [currentTitle, [Validators.required, Validators.minLength(5)]],
-        body: [currentBody, [Validators.required, Validators.minLength(10)]],
-      });
+     
+      // Check if toggling off edit mode
+      if (this.editState[postId]) {
+        // If form exists, reset to original values
+        if (this.editForms[postId]) {
+          this.editForms[postId].setValue({
+            title: currentTitle,
+            body: currentBody,
+          });
+        }
+      } else {
+        // If toggling on edit mode, initialize form
+        if (!this.editForms[postId]) {
+          this.editForms[postId] = this.fb.group({
+            title: [currentTitle, [Validators.required, Validators.minLength(5)]],
+            body: [currentBody, [Validators.required, Validators.minLength(10)]],
+          });
+        }
+      }
+    
+      // Toggle the edit state
+      this.editState[postId] = !this.editState[postId];
     }
-  }
+      
 
   updatePost(postId: string) {
     const form = this.editForms[postId];

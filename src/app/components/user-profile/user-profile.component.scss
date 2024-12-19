@@ -40,27 +40,7 @@
     font-size: 1.2rem;
     color: #777;
   }
-  .action-btn {
-    background-color: #f9d9e8;
-    border: none;
-    color: #4a4a4a;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
-    &:hover {
-      background-color: #f2a9d1; 
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-    }
-  
-    &:active {
-      transform: scale(0.95); 
-    }
-  }
+
   /* Form in edit mode */
 .edit-form {
   display: flex;
